@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -11,19 +9,19 @@ public class PO9_ListOfPredicates {
         Scanner scanner = new Scanner (System.in);
         int n = Integer.parseInt(scanner.nextLine());
 
-        List <Integer> numbers = Arrays.stream(scanner.nextLine().split("\\s+"))
-                .map(Integer::parseInt).collect(Collectors.toList());
+        Set<Integer> numbers = Arrays.stream(scanner.nextLine().split("\\s+"))
+                .mapToInt(Integer::parseInt) .boxed().collect(Collectors.toCollection(HashSet::new));
 
-        BiFunction <List <Integer>,Integer ,Boolean> predicate = ((List,number) ->{
-            for (Integer integer : List) {
-                if(number % integer != 0){
+        Predicate <Integer> predicate = num -> {
+            for (Integer integer : numbers) {
+                if(num % integer != 0){
                     return false;
                 }
             }
             return true;
-        });
+        };
         for (int number = 1; number < n; number++) {
-            if(predicate.apply(numbers,number)){
+            if(predicate.test(number) ){
                 System.out.print(number + " ");
             }
         }

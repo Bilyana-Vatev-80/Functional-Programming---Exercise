@@ -17,5 +17,8 @@ public class PO2_KnightsOfHonor {
             }
         };
         printName.accept(listOfNames);
+        for (String e : scanner.nextLine().split("\\s+")) {
+            System.out.println("Sir " + listOfNames);
+        }
     }
 }

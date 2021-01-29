@@ -11,9 +11,12 @@ public class PO7_FindTheSmallestElement {
         List <Integer> numbers = Arrays.stream(scanner.nextLine().split("\\s+"))
                 .map(Integer::parseInt).collect(Collectors.toList());
 
-        Function <List <Integer>,Integer> smallestNumber = num -> Collections.min(num);
+       // Function <List <Integer>,Integer> smallestNumber = num -> Collections.min(num);
+        Function <List<Integer>,Integer> getLastInd =
+                list -> list.lastIndexOf(list.stream().min(Integer::compare).get());
 
-        int minNum = smallestNumber.apply(numbers);
-        System.out.println(numbers.lastIndexOf(minNum));
+        //int minNum = smallestNumber.apply(numbers);
+        //System.out.println(numbers.lastIndexOf(minNum));
+        System.out.println(getLastInd.apply(numbers));
     }
 }

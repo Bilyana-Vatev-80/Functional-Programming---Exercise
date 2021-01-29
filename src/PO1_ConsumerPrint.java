@@ -16,5 +16,6 @@ public class PO1_ConsumerPrint {
             }
         };
         printer.accept(name);
+      Arrays.stream(scanner.nextLine().split("\\s+")).forEach(System.out::println);
     }
 }
